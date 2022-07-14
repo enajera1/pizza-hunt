@@ -4,10 +4,14 @@ const dateFormat = require('../utils/dateFormat');
 const PizzaSchema = new Schema(
   {
     pizzaName: {
-      type: String
+      type: String,
+      required: true, // compare to 'allowNull: false'. we could also add a custom message if null.
+      trim: true    
     },
     createdBy: {
-      type: String
+      type: String,
+      required: true,
+      trim: true
     },
     createdAt: {
       type: Date,
@@ -16,6 +20,8 @@ const PizzaSchema = new Schema(
     },
     size: {
       type: String,
+      required: true,
+      enum: ['Personal','Small', 'Medium', 'Large', 'Extra Large'], //enum = what sizes we accept
       default: 'Large'
     },
     toppings: [],
